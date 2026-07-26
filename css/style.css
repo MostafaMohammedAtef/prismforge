@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600;700&display=swap');
 
-/* Reset */
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -11,9 +13,10 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #0c0e14;
   color: #f1f5f9;
+  line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: 'Rajdhani', sans-serif;
 }
 
@@ -29,17 +32,16 @@ img {
   max-width: 100%;
 }
 
-/* Utility Classes*/
-
-.bg-primary
-{
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+.bg-primary {
   background-color: #ff2e4c;
   color: #ffffff;
-  padding: 0.1em 0.1em;
+  padding: 0.1em 0.3em;
   border-radius: 4px;
 }
 
-/* Container */
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -55,7 +57,7 @@ img {
 }
 
 /* ==========================================================================
-   HEADER & NAV MENU
+   Header & Nav Menu
    ========================================================================== */
 .header {
   padding: 1rem 0;
@@ -77,7 +79,6 @@ img {
   gap: 1rem;
 }
 
-/* Main Menu Links */
 .header .main-menu a {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.15rem;
@@ -90,7 +91,6 @@ img {
   transition: all 0.3s ease;
 }
 
-/* Hover & Active States (Red) */
 .header .main-menu a:hover,
 .header .main-menu a.active,
 .header .main-menu a.current {
@@ -98,9 +98,6 @@ img {
   text-shadow: 0 0 10px rgba(255, 46, 76, 0.6);
 }
 
-
-
-/* Glowing Bottom Line Effect on Hover (Red) */
 .header .main-menu a::after {
   content: '';
   position: absolute;
@@ -120,49 +117,51 @@ img {
   width: 80%;
 }
 
-/* Hero */
-
-.hero
-{
+/* ==========================================================================
+   Hero Section (With Load Transition)
+   ========================================================================== */
+.hero {
   height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
-.hero h2
-{
+.hero h2 {
   font-size: 3rem;
   line-height: 1.7;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@media (max-width: 768px)
-{
-  .header .header-flex
-  {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .hero
-  {
-    height: 300px;
-  }
-  
-  .hero h2
-  {
-    font-size: 1.8rem;
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-
-/* Gallery */
+/* ==========================================================================
+   Gallery Items (With Staggered Load Entrance & Hover Transitions)
+   ========================================================================== */
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .gallery {
   padding: 2rem 0;
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 0 auto 5rem auto;
 }
 
 .gallery-flex {
@@ -175,26 +174,334 @@ img {
   position: relative;
   overflow: hidden;
   border-radius: 6px;
+  opacity: 0;
+  animation: galleryFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
 }
+
+/* Staggered delay for each item */
+.gallery-item:nth-child(1) { animation-delay: 0.2s; }
+.gallery-item:nth-child(2) { animation-delay: 0.35s; }
+.gallery-item:nth-child(3) { animation-delay: 0.5s; }
+.gallery-item:nth-child(4) { animation-delay: 0.65s; }
+.gallery-item:nth-child(5) { animation-delay: 0.8s; }
+.gallery-item:nth-child(6) { animation-delay: 0.95s; }
 
 .gallery-item img {
   width: 100%;
-  aspect-ratio: 2 / 3; /* portrait poster ratio */
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
-  transition: box-shadow 0.3s ease;
+  border-radius: 6px;
+  border: 1px solid grey;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease,
+              filter 0.4s ease;
 }
 
-@media (max-width: 768px) {
-  .gallery-flex {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.gallery-flex:hover .gallery-item {
+  opacity: 0.5;
+  transform: scale(0.96);
 }
 
-.gallery-item img {
-  transition: box-shadow 0.3s ease;
+.gallery-flex:hover .gallery-item:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  z-index: 2;
 }
 
 .gallery-item:hover img {
-  box-shadow: 8px 8px 10px rgb(255, 46, 76);
+  border-color: #ff2e4c;
+  box-shadow: 0 0 25px rgba(255, 46, 76, 0.7);
+  filter: brightness(1.15);
+  transform: scale(1.04);
 }
+
+/* ==========================================================================
+   Landscape Gallery Styles (About / Studios Page)
+   ========================================================================== */
+.gallery-landscape {
+  padding: 3rem 0;
+  margin-bottom: 5rem;
+}
+
+.gallery-landscape .gallery-flex {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.gallery-landscape .gallery-item img {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background-color: #282b35;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid grey;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease,
+              background-color 0.4s ease;
+}
+
+.gallery-landscape .gallery-item:hover img {
+  background-color: #1e222d;
+  border-color: #ff2e4c;
+  box-shadow: 0 0 25px rgba(255, 46, 76, 0.6);
+}
+
+/* ==========================================================================
+   Studios Section
+   ========================================================================== */
+.studios {
+  background-color: #15171f;
+  padding: 4rem 0;
+  margin-top: 3rem;
+}
+
+.studios .section-heading {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.studios-flex {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.studio-item h3 {
+  color: #ff2e4c;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.studio-item p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Contact Page Styles
+   ========================================================================== */
+.contact-section {
+  padding: 3rem 0 5rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-info h3 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.info-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.info-list li i {
+  color: #ff2e4c;
+  font-size: 1.3rem;
+  width: 24px;
+}
+
+.info-list li a {
+  color: #f1f5f9;
+  transition: color 0.3s ease;
+}
+
+.info-list li a:hover {
+  color: #ff2e4c;
+}
+
+.contact-form {
+  background-color: #15171f;
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #f1f5f9;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: #0c0e14;
+  border: 1px solid #333d4b;
+  border-radius: 4px;
+  color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ff2e4c;
+  box-shadow: 0 0 8px rgba(255, 46, 76, 0.4);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #ff2e4c;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #e02640;
+  box-shadow: 0 0 15px rgba(255, 46, 76, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.footer .footer-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer img {
+  width: 200px;
+}
+
+.footer h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer .contact .social-links,
+.footer .social .social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a i {
+  font-size: 1.2rem;
+}
+
+.social-links a:hover {
+  color: #ff2e4c;
+}
+
+.social-links a:hover i {
+  text-shadow: 0 0 10px rgba(255, 46, 76, 0.6);
+}
+
+.footer .social .social-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem 1.5rem;
+}
+
+/* ==========================================================================
+   Media Queries (Mobile / Tablet Responsive)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .header .header-flex {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero {
+    height: 300px;
+  }
+
+  .hero h2 {
+    font-size: 2.3rem;
+  }
+
+  .gallery-flex,
+  .gallery-landscape .gallery-flex {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .studios-flex {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer .footer-flex {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer .contact .social-links,
+  .footer .social .social-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+}
+
