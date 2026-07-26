@@ -36,7 +36,7 @@ PrismForge is a fictional game-publisher portfolio site built as a frontend desi
 
 ## 🎥 Demo Video
 
-<img width="400" height="225" alt="Image" src="https://github.com/user-attachments/assets/f763fd7e-31dd-4591-90dc-d2f22b268d4f" />\_
+<img width="400" height="225" alt="Image" src="https://github.com/user-attachments/assets/f763fd7e-31dd-4591-90dc-d2f22b268d4f" />
 
 ---
 
