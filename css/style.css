@@ -511,3 +511,51 @@ img {
     gap: 1.2rem;
   }
 }
+
+/* ==========================================================================
+   Thank You Page
+   ========================================================================== */
+.thank-you-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.thank-you-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.thank-you-icon {
+  font-size: 4rem;
+  color: #ff2e4c;
+  text-shadow: 0 0 20px rgba(255, 46, 76, 0.5);
+}
+
+.thank-you-content h2 {
+  font-size: 2.5rem;
+}
+
+.thank-you-content p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+.btn-home {
+  display: inline-block;
+  margin-top: 1rem;
+  width: auto;
+  padding: 0.9rem 2.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .thank-you-content h2 {
+    font-size: 1.8rem;
+  }
+}

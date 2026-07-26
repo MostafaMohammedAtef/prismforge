@@ -67,7 +67,12 @@
         </div>
 
         <div class="contact-form">
-          <form action="#" method="POST">
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            action="/thank-you.html">
+            <input type="hidden" name="form-name" value="contact" />
             <div class="form-group">
               <label for="name">Your Name</label>
               <input
