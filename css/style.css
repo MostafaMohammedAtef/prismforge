@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #0c0e14;
@@ -118,7 +122,7 @@ img {
 }
 
 /* ==========================================================================
-   Hero Section
+   Hero Section & Entrance Transition
    ========================================================================== */
 .hero {
   height: 500px;
@@ -132,10 +136,20 @@ img {
 .hero h2 {
   font-size: 3rem;
   line-height: 1.7;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
-   Gallery Items (No Entrance Animations, Instant Display)
+   Gallery Items & Grid Transitions
    ========================================================================== */
 .gallery {
   padding: 2rem 0;
@@ -143,7 +157,8 @@ img {
   margin: 0 auto 5rem auto;
 }
 
-.gallery-flex {
+.gallery-flex,
+.gallery-landscape .gallery-flex {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
@@ -151,10 +166,15 @@ img {
 
 .gallery-item {
   position: relative;
-  overflow: hidden;
   border-radius: 6px;
+  border: 1px solid #333d4b;
+  background-color: #15171f;
   opacity: 1;
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              opacity 0.4s ease, 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
 }
 
 .gallery-item img {
@@ -162,31 +182,25 @@ img {
   aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
-  border-radius: 6px;
-  border: 1px solid grey;
-  cursor: pointer;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.4s ease,
-              border-color 0.4s ease,
-              filter 0.4s ease;
+  border-radius: 5px;
+  transition: filter 0.4s ease;
 }
 
 .gallery-flex:hover .gallery-item {
-  opacity: 0.5;
+  opacity: 0.45;
   transform: scale(0.96);
 }
 
 .gallery-flex:hover .gallery-item:hover {
   opacity: 1;
   transform: scale(1.05);
+  border-color: #ff2e4c;
+  box-shadow: 0 0 25px rgba(255, 46, 76, 0.6);
   z-index: 2;
 }
 
 .gallery-item:hover img {
-  border-color: #ff2e4c;
-  box-shadow: 0 0 25px rgba(255, 46, 76, 0.7);
   filter: brightness(1.15);
-  transform: scale(1.04);
 }
 
 /* ==========================================================================
@@ -197,29 +211,16 @@ img {
   margin-bottom: 5rem;
 }
 
-.gallery-landscape .gallery-flex {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
 .gallery-landscape .gallery-item img {
   aspect-ratio: 16 / 9;
   object-fit: contain;
   background-color: #282b35;
   padding: 1.5rem;
-  border-radius: 6px;
-  border: 1px solid grey;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.4s ease,
-              border-color 0.4s ease,
-              background-color 0.4s ease;
+  transition: background-color 0.4s ease, filter 0.4s ease;
 }
 
 .gallery-landscape .gallery-item:hover img {
   background-color: #1e222d;
-  border-color: #ff2e4c;
-  box-shadow: 0 0 25px rgba(255, 46, 76, 0.6);
 }
 
 /* ==========================================================================

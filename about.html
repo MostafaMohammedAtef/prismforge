@@ -14,13 +14,11 @@
     <title>PrismForge | About Us</title>
   </head>
   <body>
-    <!-- Header / Navbar -->
     <header class="header">
       <div class="container header-flex">
         <a href="index.html">
           <img src="images/prismforge.png" alt="prismforge logo" class="logo" />
         </a>
-
         <ul class="main-menu">
           <li><a href="index.html">Home</a></li>
           <li><a class="current" href="about.html">About</a></li>
@@ -29,7 +27,6 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
       <div class="container container-sm">
         <h2>
@@ -39,22 +36,26 @@
       </div>
     </section>
 
-    <!-- Landscape Gallery -->
     <section class="gallery-landscape">
       <div class="container gallery-flex">
         <div class="gallery-item">
-          <img src="images/nightfall.png" alt="Nightfall Studios" />
+          <img
+            src="images/nightfall.png"
+            alt="Nightfall Studios"
+            loading="lazy" />
         </div>
         <div class="gallery-item">
-          <img src="images/voidreach.png" alt="Voidreach Interactive" />
+          <img
+            src="images/voidreach.png"
+            alt="Voidreach Interactive"
+            loading="lazy" />
         </div>
         <div class="gallery-item">
-          <img src="images/sunspire.png" alt="Sunspire Games" />
+          <img src="images/sunspire.png" alt="Sunspire Games" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- Studios Section -->
     <section class="studios">
       <div class="container">
         <h2 class="section-heading">Our Studios</h2>
@@ -86,32 +87,29 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="container footer-flex">
         <img src="images/prismforge.png" alt="prismforge logo" />
-
         <div class="contact">
           <h4>Contact Us</h4>
           <ul class="social-links">
             <li>
-              <a href="https://linkedin.com/in/mostafa-m-atef" target="_blank">
-                <i class="fa-brands fa-linkedin"></i> LinkedIn
-              </a>
+              <a href="https://linkedin.com/in/mostafa-m-atef" target="_blank"
+                ><i class="fa-brands fa-linkedin"></i> LinkedIn</a
+              >
             </li>
             <li>
-              <a href="https://github.com/MostafaMohammedAtef/" target="_blank">
-                <i class="fa-brands fa-github"></i> GitHub
-              </a>
+              <a href="https://github.com/MostafaMohammedAtef/" target="_blank"
+                ><i class="fa-brands fa-github"></i> GitHub</a
+              >
             </li>
             <li>
-              <a href="mailto:mostafamohammedcs@gmail.com">
-                <i class="fa-solid fa-envelope"></i> Email
-              </a>
+              <a href="mailto:mostafamohammedcs@gmail.com"
+                ><i class="fa-solid fa-envelope"></i> Email</a
+              >
             </li>
           </ul>
         </div>
-
         <div class="social">
           <h4>Follow Us</h4>
           <ul class="social-links">
@@ -138,47 +136,15 @@
       </div>
     </footer>
 
-    <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
       <span class="lightbox-close">&times;</span>
       <img
         class="lightbox-content"
         id="lightbox-img"
         src=""
-        alt="Portfolio Image Preview" />
+        alt="Full image preview" />
     </div>
 
-    <!-- Lightbox Script -->
-    <script>
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-      const lightboxClose = document.querySelector(".lightbox-close");
-
-      document.querySelectorAll(".gallery-item img").forEach((img) => {
-        img.addEventListener("click", () => {
-          const originalSrc = img.getAttribute("src");
-          const portfolioSrc = originalSrc.replace(/(\.[\w]+)$/, "-p$1");
-
-          lightboxImg.src = portfolioSrc;
-          lightbox.classList.add("active");
-        });
-      });
-
-      lightboxClose.addEventListener("click", () => {
-        lightbox.classList.remove("active");
-      });
-
-      lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
-          lightbox.classList.remove("active");
-        }
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && lightbox.classList.contains("active")) {
-          lightbox.classList.remove("active");
-        }
-      });
-    </script>
+    <script src="js/script.js"></script>
   </body>
 </html>
