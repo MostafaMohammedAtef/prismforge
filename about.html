@@ -11,14 +11,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="icon" href="images/prism.png" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>PrismForge</title>
+    <title>PrismForge | About Us</title>
   </head>
   <body>
+    <!-- Header / Navbar -->
     <header class="header">
       <div class="container header-flex">
-        <a href="index.html"
-          ><img src="images/prismforge.png" alt="prismforge logo" class="logo"
-        /></a>
+        <a href="index.html">
+          <img src="images/prismforge.png" alt="prismforge logo" class="logo" />
+        </a>
 
         <ul class="main-menu">
           <li><a href="index.html">Home</a></li>
@@ -27,52 +28,65 @@
         </ul>
       </div>
     </header>
+
+    <!-- Hero Section -->
     <section class="hero">
-<div class="container container-sm">
-  <h2>
-    We don't chase <span class="bg-primary">one genre</span> — we chase
-    <span class="bg-primary">every color</span> imagination has to offer.
-  </h2>
-</div>
+      <div class="container container-sm">
+        <h2>
+          We don't chase <span class="bg-primary">one genre</span> — we chase
+          <span class="bg-primary">every color</span> imagination has to offer.
+        </h2>
       </div>
     </section>
 
+    <!-- Landscape Gallery -->
     <section class="gallery-landscape">
-  <div class="container gallery-flex">
-    <div class="gallery-item">
-      <img src="images/nightfall.png" alt="Nightfall Studios" />
-    </div>
-    <div class="gallery-item">
-      <img src="images/voidreach.png" alt="Voidreach Interactive" />
-    </div>
-    <div class="gallery-item">
-      <img src="images/sunspire.png" alt="Sunspire Games" />
-    </div>
-  </div>
-</section>
-
-  <section class="studios">
-  <div class="container">
-    <h2 class="section-heading">Our Studios</h2>
-    <div class="studios-flex">
-      <div class="studio-item">
-        <h3>Nightfall Studios</h3>
-        <p>Horror and survival specialists. Exodus, Red Signal, Outbreak: Last Stand, Inward Descent, Hollowmere, and Last Frontier all crawled out of the dark.</p>
+      <div class="container gallery-flex">
+        <div class="gallery-item">
+          <img src="images/nightfall.png" alt="Nightfall Studios" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/voidreach.png" alt="Voidreach Interactive" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/sunspire.png" alt="Sunspire Games" />
+        </div>
       </div>
-      <div class="studio-item">
-        <h3>Voidreach Interactive</h3>
-        <p>Sci-fi and tactical strategists behind Astral Frontier, Iron Horizon, Ironwatch: Tower Defense, Chrono Veil, Shadow of Veil, and Shattered Realms.</p>
+    </section>
+
+    <!-- Studios Section -->
+    <section class="studios">
+      <div class="container">
+        <h2 class="section-heading">Our Studios</h2>
+        <div class="studios-flex">
+          <div class="studio-item">
+            <h3>Nightfall Studios</h3>
+            <p>
+              Horror and survival specialists. Exodus, Red Signal, Outbreak:
+              Last Stand, Inward Descent, Hollowmere, and Last Frontier all
+              crawled out of the dark.
+            </p>
+          </div>
+          <div class="studio-item">
+            <h3>Voidreach Interactive</h3>
+            <p>
+              Sci-fi and tactical strategists behind Astral Frontier, Iron
+              Horizon, Ironwatch: Tower Defense, Chrono Veil, Shadow of Veil,
+              and Shattered Realms.
+            </p>
+          </div>
+          <div class="studio-item">
+            <h3>Sunspire Games</h3>
+            <p>
+              Adventure and arcade craftsmen powering Terralis, Echoes of
+              Elysium, Beat Wave, Rise Above, Hopper, and Velocity Horizon.
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="studio-item">
-        <h3>Sunspire Games</h3>
-        <p>Adventure and arcade craftsmen powering Terralis, Echoes of Elysium, Beat Wave, Rise Above, Hopper, and Velocity Horizon.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-
+    <!-- Footer -->
     <footer class="footer">
       <div class="container footer-flex">
         <img src="images/prismforge.png" alt="prismforge logo" />
@@ -123,5 +137,48 @@
         </div>
       </div>
     </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img
+        class="lightbox-content"
+        id="lightbox-img"
+        src=""
+        alt="Portfolio Image Preview" />
+    </div>
+
+    <!-- Lightbox Script -->
+    <script>
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxClose = document.querySelector(".lightbox-close");
+
+      document.querySelectorAll(".gallery-item img").forEach((img) => {
+        img.addEventListener("click", () => {
+          const originalSrc = img.getAttribute("src");
+          const portfolioSrc = originalSrc.replace(/(\.[\w]+)$/, "-p$1");
+
+          lightboxImg.src = portfolioSrc;
+          lightbox.classList.add("active");
+        });
+      });
+
+      lightboxClose.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove("active");
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("active")) {
+          lightbox.classList.remove("active");
+        }
+      });
+    </script>
   </body>
 </html>
