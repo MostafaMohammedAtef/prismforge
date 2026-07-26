@@ -64,9 +64,7 @@ The project was built to practice structuring a multi-page static site, implemen
 
 ## Demo Video
 
-https://github.com/user-attachments/assets/f763fd7e-31dd-4591-90dc-d2f22b268d4f
-
-_A full walkthrough of the site's pages, gallery interactions, and contact flow._
+<img width="400" height="225" alt="Image" src="https://github.com/user-attachments/assets/f763fd7e-31dd-4591-90dc-d2f22b268d4f" />\_
 
 ---
 
