@@ -8,8 +8,15 @@ if (lightbox && lightboxImg && lightboxClose) {
       const originalSrc = img.getAttribute("src");
       const wideSrc = originalSrc.replace(/(\.[\w]+)$/, "-p$1");
 
-      lightboxImg.src = wideSrc;
+      lightboxImg.classList.remove("loaded");
       lightbox.classList.add("active");
+
+      const preload = new Image();
+      preload.onload = () => {
+        lightboxImg.src = wideSrc;
+        lightboxImg.classList.add("loaded");
+      };
+      preload.src = wideSrc;
     });
   });
 
